@@ -1,0 +1,33 @@
+app > http > controllers (regra de negócio)
+app > http > kernel (nucleo do Lavarvel)
+app >  models (integrar com os dados)
+
+app > bootstrap > app.php - inicializa o framework
+.env - configurações do ambiente 
+
+migrations - alterações na estrutura do banco de dados, banco pronto junto com a aplicação
+(versionamento de banco)
+
+seeders - popular o banco de dados, testes
+
+public - configurar no servidor web para ele ser exposto
+
+template ending - separação do php do html (blade)
+
+nome.blade.php -- saber que é uma view
+
+console para dar comandos no console
+
+storage - templates do blade já em cash
+
+tests - teste unitário
+
+vendor - composer instala as dependencias
+
+php artisan make:model Personagens - criar models
+php artisan make:migration cria_tabela_personagens --create=personagens
+
+fundo de papel depende da inflação
+
+App\Models\Personagens::find(3);
+
