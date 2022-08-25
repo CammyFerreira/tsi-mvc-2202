@@ -31,3 +31,9 @@ fundo de papel depende da inflação
 
 App\Models\Personagens::find(3);
 
+criar a model -> -cm(controllers e migrations)
+alterar a migration
+rodar a migration - $ php artisan migrate
+criar a rota
+criar a função na controller
+
