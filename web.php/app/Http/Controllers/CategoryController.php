@@ -18,4 +18,18 @@ class CategoryController extends Controller
        Category::create(['name' => $request -> name]);
        return redirect(route('category.index'));
     }
+    function edit(Category $category){
+        return view('category.edit')->with('category', $category); //insert e select
+        // dd($category);
+     }
+
+     function update(Category $category, Request $request){
+        $category->update(['name' => $request->name]);
+        return redirect(route('category.index'));
+     }
+
+     function destroy(Category $category){
+        $category->delete();
+        return redirect(route('category.index'));
+     }
 }

@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/category/create', [CategoryController::class, 'create']);
-Route::post('/category/create', [CategoryController::class, 'store']);
-
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');//salva no banco
+Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/edit/{category}', [CategoryController::class, 'update'])->name('category.update');
+Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
