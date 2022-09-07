@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/avisos', function () {
+
+    $avisos = ['avisos' => [0 => ['data' => '06/09/2022', 'aviso' => 'Amanhã é feriado', 'exibir' => true],
+                1 => ['data' => '06/10/2021', 'aviso' => 'Ano de pandemia', 'exibir' => false],
+                2 => ['data' => '04/09/2022', 'aviso' => 'Passado é passado', 'exibir' => true]]];
+
+    return view('avisos', $avisos);
+});

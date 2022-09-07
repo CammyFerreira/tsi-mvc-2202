@@ -17,4 +17,9 @@ class Produtos extends Model
 
 
        protected $table = 'produtos';
+
+       public function produto(){
+        return $this->hasMany(ProdutosVenda::class, 'id');
+       }
+
 }
