@@ -25,3 +25,5 @@ Route::get('/avisos', function () {
 
     return view('avisos', $avisos);
 });
+
+Route::resource('/clientes', App\Http\Controllers\ClienteController::class);
