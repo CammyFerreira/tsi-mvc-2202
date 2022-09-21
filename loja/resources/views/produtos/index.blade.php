@@ -10,7 +10,7 @@
         <div class="pull-right">
 
 
-            <a class="btn btn-success" href="{{ route('clientes.create') }}"> + Novo cliente</a>
+            <a class="btn btn-success" href="{{ route('produtos.create') }}"> + Novo produto</a>
 
 
         </div>
@@ -32,25 +32,23 @@
  <tr>
    <th>ID</th>
    <th>Nome</th>
-   <th>Email</th>
-   <th>Telefone</th>
-   <th>Endereço</th>
+   <th>Descricao</th>
+   <th>Preco</th>
    <th width="280px">Ação</th>
  </tr>
 
- @foreach ($cli as $key => $cliente)
+ @foreach ($prod as $key => $produtos)
 
   <tr>
-    <td>{{ $cliente->id }}</td>
-    <td>{{ $cliente->nome }}</td>
-    <td>{{ $cliente->email }}</td>
-    <td>{{ $cliente->telefone }}</td>
-    <td>{{ $cliente->endereco }}</td>
+    <td>{{ $produtos->id }}</td>
+    <td>{{ $produtos->nome }}</td>
+    <td>{{ $produtos->descricao }}</td>
+    <td>{{ $produtos->preco }}</td>
     <td>
-       <a class="btn btn-info" href="{{ route('clientes.show',$cliente->id) }}">Mostrar</a>
-       <a class="btn btn-primary" href="{{ route('clientes.edit',$cliente->id) }}">Editar</a>
+       <a class="btn btn-info" href="{{ route('produtos.show',$produtos->id) }}">Mostrar</a>
+       <a class="btn btn-primary" href="{{ route('produtos.edit',$produtos->id) }}">Editar</a>
 
-       {!! Form::open(['method' => 'DELETE','route' => ['clientes.destroy', $cliente->id],'style'=>'display:inline']) !!}
+       {!! Form::open(['method' => 'DELETE','route' => ['produtos.destroy', $produtos->id],'style'=>'display:inline']) !!}
 
 
 
@@ -68,7 +66,7 @@
 
 </table>
 
-{!! $cli->render() !!}
+{!! $prod->render() !!}
 
 @endsection
 
