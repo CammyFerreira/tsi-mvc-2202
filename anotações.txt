@@ -37,3 +37,5 @@ rodar a migration - $ php artisan migrate
 criar a rota
 criar a função na controller
 
+composer require laravelcollective/html pacote do blade de dependencia
+php artisan make:controller vendedoresController --resource
