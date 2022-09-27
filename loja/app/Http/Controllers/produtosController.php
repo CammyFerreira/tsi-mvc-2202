@@ -14,6 +14,8 @@ class produtosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    //Lista os dados da tabela
     public function index(Request $request)
     {
         $prod = Produtos::orderBy('id', 'ASC')->paginate($this->qtdPorPagina);
@@ -26,6 +28,7 @@ class produtosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     //Retorna a View para criar um item da tabela
     public function create()
     {
         return view('produtos.create');
@@ -37,6 +40,7 @@ class produtosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     //Salva o novo item na tabela
     public function store(Request $request)
     {
         $this->validate($request, ['nome'=> 'required',
@@ -55,6 +59,7 @@ class produtosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Mostra um item específico
     public function show($id)
     {
         $prod = Produtos::find($id);
@@ -68,6 +73,7 @@ class produtosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Retorna a view para edição do dado
     public function edit($id)
     {
         $prod = Produtos::find($id);
@@ -82,6 +88,7 @@ class produtosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Salva a atualização do dado
     public function update(Request $request, $id)
     {
         $this->validate($request, ['nome'=> 'required',
@@ -102,6 +109,7 @@ return redirect()->route('produtos.index')->with('sucess', 'Produto atualizado c
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Remove o dado
     public function destroy($id)
     {
         Produtos::find($id)->delete();
