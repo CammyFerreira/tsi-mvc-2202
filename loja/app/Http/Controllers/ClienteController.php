@@ -14,6 +14,8 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    //Lista os dados da tabela
     public function index(Request $request)
     {
         $cli = Clientes::orderBy('id', 'ASC')->paginate($this->qtdPorPagina);
@@ -26,6 +28,7 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Retorna a View para criar um item da tabela
     public function create()
     {
        return view('clientes.create');
@@ -37,6 +40,7 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    ////Salva o novo item na tabela
     public function store(Request $request)
     {
         //armazenar os dados do formulário no banco
@@ -56,6 +60,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    ////Mostra um item específico
     public function show($id)
     {
         //quando clicar em um regitsro específico
@@ -70,6 +75,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Retorna a View para edição do dado
     public function edit($id)
     {
         $cliente = Clientes::find($id);
@@ -85,6 +91,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Salva a atualização do dado
     public function update(Request $request, $id)
     {
 
@@ -106,6 +113,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Remove o dado
     public function destroy($id)
     {
         Clientes::find($id)->delete();
