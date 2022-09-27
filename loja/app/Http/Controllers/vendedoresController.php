@@ -16,7 +16,8 @@ class vendedoresController extends Controller
      */
 
     //Request $request - receber a requisição vinda do browser
-
+    
+    //Lista os dados da tabela
     public function index(Request $request)
     {
         $vendedor = Vendedores::orderBy('id', 'ASC')->paginate($this->qtdPorPagina);
@@ -30,6 +31,7 @@ class vendedoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Retorna a View para criar um item da tabela
     public function create()
     {
         return view('vendedores.create');
@@ -41,6 +43,8 @@ class vendedoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
+    //Salva o novo item na tabela
     public function store(Request $request)
     {
         $this->validate($request, ['nome'=> 'required',
@@ -58,6 +62,7 @@ class vendedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Mostra um item específico
     public function show($id)
     {
         $vendedor = Vendedores::find($id);
@@ -71,6 +76,7 @@ class vendedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Retorna a View para edição do dado
     public function edit($id)
     {
         $vendedor = Vendedores::find($id);
@@ -85,6 +91,7 @@ class vendedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //Salva a atualização do dado
     public function update(Request $request, $id)
     {
         $this->validate($request, ['nome'=> 'required',
@@ -104,6 +111,7 @@ class vendedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // //Remove o dado
     public function destroy($id)
     {
         Vendedores::find($id)->delete();
