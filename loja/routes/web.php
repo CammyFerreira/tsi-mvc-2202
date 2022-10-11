@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\ClienteController;
-use \App\Http\Controllers\vendedoresController;
-use \App\Http\Controllers\produtosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/avisos', function () {
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-    $avisos = ['avisos' => [0 => ['data' => '06/09/2022', 'aviso' => 'Amanhã é feriado', 'exibir' => true],
-                1 => ['data' => '06/10/2021', 'aviso' => 'Ano de pandemia', 'exibir' => false],
-                2 => ['data' => '04/09/2022', 'aviso' => 'Passado é passado', 'exibir' => true]]];
-
-    return view('avisos', $avisos);
-});
-
-Route::resource('/clientes', App\Http\Controllers\ClienteController::class);
-Route::resource('/vendedores', App\Http\Controllers\vendedoresController::class);
-Route::resource('/produtos', App\Http\Controllers\produtosController::class);
+require __DIR__.'/auth.php';
