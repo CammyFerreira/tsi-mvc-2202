@@ -40,4 +40,15 @@ criar a função na controller
 composer require laravelcollective/html pacote do blade de dependencia
 php artisan make:controller vendedoresController --resource
 
-//
+//seederTablePermissions
+
+$permissions = ['role-list','role-edit','role-delete','role-create'
+                'user-list','user-edit','user-delete','user-create'
+                'vendedores-list','vendedores-edit','vendedores-delete','vendedores-create',
+                'clientes-list','clientes-edit','clientes-delete','clientes-create',
+                'produtos-list','produtos-edit','produtos-delete','produtos-create'];
+
+forEach($permissions as $permission){
+
+    Permission::create(['name' => $permission]);//cada looping vai pegar a permissao e coloca no campo name da model Permission 
+}
