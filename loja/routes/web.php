@@ -20,15 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/avisos', function () {
+require __DIR__.'/auth.php';
 
-    $avisos = ['avisos' => [0 => ['data' => '06/09/2022', 'aviso' => 'Amanhã é feriado', 'exibir' => true],
-                1 => ['data' => '06/10/2021', 'aviso' => 'Ano de pandemia', 'exibir' => false],
-                2 => ['data' => '04/09/2022', 'aviso' => 'Passado é passado', 'exibir' => true]]];
-
-    return view('avisos', $avisos);
+Route::group(['middleware' => ['auth']], function(){
+    Route::resource('/clientes', App\Http\Controllers\ClienteController::class);
+    Route::resource('/vendedores', App\Http\Controllers\VendedoresController::class);
+    Route::resource('/users', App\Http\Controllers\UserController::class);
+    Route::resource('/roles', App\Http\Controllers\RoleController::class);
 });
-
-Route::resource('/clientes', App\Http\Controllers\ClienteController::class);
-Route::resource('/vendedores', App\Http\Controllers\vendedoresController::class);
-Route::resource('/produtos', App\Http\Controllers\produtosController::class);
