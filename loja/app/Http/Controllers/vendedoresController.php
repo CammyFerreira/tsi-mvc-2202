@@ -7,6 +7,22 @@ use \App\Models\Vendedores;
 
 class vendedoresController extends Controller
 {
+    public function __construct(){
+        //tiver qualquer acesso a qualquer uma dessas já pode ver a listagem
+        $this->middleware('permission:vendedores-list|vendedores-create|vendedores-edit|vendedores-delete',
+                            ['only' => ['index', 'show']]);
+
+        //se tiver a permissão vendedores-create pode acessar o create e store
+        $this->middleware( 'permission:vendedores-create',
+                            ['only' => ['create', 'store']]);
+
+        //se tiver permissão para acessar perfil
+        $this->middleware( 'permission:vendedores-edit',
+                            ['only' => ['edit', 'update']]);
+        //se tiver a permissão do delete
+        $this->middleware( 'permission:vendedores-delete',
+                            ['only' => ['destory']]);
+    }
 
     private $qtdPorPagina = 5;
     /**
@@ -16,7 +32,7 @@ class vendedoresController extends Controller
      */
 
     //Request $request - receber a requisição vinda do browser
-    
+
     //Lista os dados da tabela
     public function index(Request $request)
     {
@@ -43,7 +59,7 @@ class vendedoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     //Salva o novo item na tabela
     public function store(Request $request)
     {
