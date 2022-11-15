@@ -134,4 +134,46 @@ class vendedoresController extends Controller
 
         return redirect()->route('vendedores.index')->with('sucess', 'Vendedor removido com sucesso!');
     }
+
+    public function checkVendedor(int $x)
+    {
+        if ($x <= 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function existeVendedor(string $nome):bool
+    {
+        $vendedores = ['Paula', 'Matheus', 'Amanda', 'José'];
+
+        if ( in_array($nome, $vendedores) ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getVendedor(int $id):?string
+    {
+        $vendedores = [1 => 'Paula', 2 => 'Romeu', 3 => 'Amanda', 4 => 'José'];
+
+        if ( isset($vendedores[$id]) ) {
+            return $vendedores[$id];
+        }
+
+        return null;
+    }
+
+    public function getVendedorJSON(int $id):?string
+    {
+        $vendedores = [1 => 'Paula', 2 => 'Romeu', 3 => 'Amanda', 4 => 'José'];
+
+        if ( isset($vendedores[$id]) ) {
+            return json_encode($vendedores[$id]);
+        }
+
+        return null;
+    }
 }
