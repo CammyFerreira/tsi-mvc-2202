@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use DB;
 
 class RoleController extends Controller
@@ -30,7 +29,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $roles = Role::orderBy('id', 'DESC')->paginate(5);
 
@@ -63,7 +62,7 @@ class RoleController extends Controller
                                    'permission' => 'required']);
 
         $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        $role->syncPermissions($request->input('permission'));//salva as novas permissões
 
         return redirect()->route('roles.index')->with('success',
                                                       'Perfil criado com sucesso');
@@ -84,9 +83,10 @@ class RoleController extends Controller
                                             "=",
                                             "permissions.id")
                                              ->where("role_has_permissions.role_id", $id)
-                                             ->get();
+                                             ->get();//retorna os registros que são comuns às duas tabelas.
 
         return view('roles.show', compact('role', 'rolePermissions'));
+//compact - Cria um array contendo variáveis e seus valores.
     }
 
     /**
@@ -99,7 +99,7 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
 
-        $rolePermissions = Permission::get();
+        $rolePermissions = Permission::get();//obtem os dados da model
 
         $rolePermissions = DB::table("role_has_permissions")
                                 ->where("role_has_permissions.role_id", $id)
@@ -107,6 +107,7 @@ class RoleController extends Controller
                                         ->all();
 
         return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
+    //compact - Cria um array contendo variáveis e seus valores.
     }
 
     /**
