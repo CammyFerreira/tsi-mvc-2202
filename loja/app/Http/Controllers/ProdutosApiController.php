@@ -14,7 +14,7 @@ class ProdutosApiController extends Controller
      */
     public function index()
     {
-        return Produtos::all();
+        return Produtos::all();//mostrar todos os produtos
     }
 
     /**
@@ -37,7 +37,7 @@ class ProdutosApiController extends Controller
     {
         $json = $request->getContent();
 
-        return Produtos::create(json_decode($json, JSON_OBJECT_AS_ARRAY));
+        return Produtos::create(json_decode($json, JSON_OBJECT_AS_ARRAY));//json_decode transforma um objeto json para array
         //metodo create espera receber um vetor e não um objeto
     }
 
@@ -54,7 +54,7 @@ class ProdutosApiController extends Controller
         if($produto){
             return $produto;
         }else{
-            return json_encode([$id => 'não existe']);
+            return json_encode([$id => 'não existe']);//transforma em um objeto json
         }
     }
 
@@ -82,7 +82,7 @@ class ProdutosApiController extends Controller
 
         if($produto){
            $json = $request->getContent();
-           $atualizacao = json_decode($json, JSON_OBJECT_AS_ARRAY);
+           $atualizacao = json_decode($json, JSON_OBJECT_AS_ARRAY);//json_decode transforma um objeto json para array
            $produto->nome = $atualizacao['nome'];
            $produto->descricao = $atualizacao['descricao'];
            $produto->preco = $atualizacao['preco'];
@@ -90,7 +90,7 @@ class ProdutosApiController extends Controller
         }else{
             $ret = [$id => 'não existe'];
         }
-        return json_encode($ret);
+        return json_encode($ret);//transforma em um objeto json
     }
 
     /**
@@ -108,6 +108,6 @@ class ProdutosApiController extends Controller
         }else{
             $ret = [$id => 'Não existe'];
         }
-        return json_encode($ret);
+        return json_encode($ret);//transforma em um objeto json
     }
 }

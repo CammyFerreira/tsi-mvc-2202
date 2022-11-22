@@ -38,7 +38,7 @@ class VendedoresApiController extends Controller
         $json = $request->getContent();
 
         return Vendedores::create(json_decode($json, JSON_OBJECT_AS_ARRAY));
-        //metodo create espera receber um vetor e não um objeto
+        //metodo create espera receber um vetor e não um objeto então o json_decode transforma um objeto em um array
     }
 
     /**
@@ -52,9 +52,9 @@ class VendedoresApiController extends Controller
         $vendedor = Vendedores::find($id);
 
         if($vendedor){
-            return $vendedor;
+            return $vendedor;//se o vendedor existe retorna o vendedor 
         }else{
-            return json_encode([$id => 'não existe']);
+            return json_encode([$id => 'não existe']);//se não ele transforma em objeto 
         }
     }
 
@@ -82,14 +82,14 @@ class VendedoresApiController extends Controller
 
         if($vendedor){
            $json = $request->getContent();
-           $atualizacao = json_decode($json, JSON_OBJECT_AS_ARRAY);
+           $atualizacao = json_decode($json, JSON_OBJECT_AS_ARRAY);//json_decode transforma um objeto json para array
            $vendedor->nome = $atualizacao['nome'];
            $vendedor->matricula = $atualizacao['matricula'];
            $ret = $vendedor->update() ? [$id => 'atualizado'] : [$id => 'erro ao atualizar'];
         }else{
             $ret = [$id => 'não existe'];
         }
-        return json_encode($ret);
+        return json_encode($ret);//transforma em um objeto json
     }
 
     /**
@@ -107,6 +107,6 @@ class VendedoresApiController extends Controller
         }else{
             $ret = [$id => 'Não existe'];
         }
-        return json_encode($ret);
+        return json_encode($ret);//transforma em um objeto json
     }
 }

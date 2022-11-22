@@ -14,7 +14,7 @@ class ClientesApiController extends Controller
      */
     public function index()
     {
-        return Clientes::all();
+        return Clientes::all();//mostrar todos os clientes
     }
 
     /**
@@ -37,7 +37,7 @@ class ClientesApiController extends Controller
     {
         $json = $request->getContent();
 
-        return Clientes::create(json_decode($json, JSON_OBJECT_AS_ARRAY));
+        return Clientes::create(json_decode($json, JSON_OBJECT_AS_ARRAY));//json_decode transforma um objeto json para array
     }
 
     /**
@@ -53,7 +53,7 @@ class ClientesApiController extends Controller
         if($cliente){
             return $cliente;
         }else{
-            return json_encode([$id => 'não existe']);
+            return json_encode([$id => 'não existe']);//transforma em um objeto json
         }
     }
 
@@ -81,7 +81,7 @@ class ClientesApiController extends Controller
 
         if($cliente){
            $json = $request->getContent();
-           $atualizacao = json_decode($json, JSON_OBJECT_AS_ARRAY);
+           $atualizacao = json_decode($json, JSON_OBJECT_AS_ARRAY);//json_decode transforma um objeto json para array
            $cliente->nome = $atualizacao['nome'];
            $cliente->endereco = $atualizacao['endereco'];
            $cliente->email = $atualizacao['email'];
@@ -90,7 +90,7 @@ class ClientesApiController extends Controller
         }else{
             $ret = [$id => 'não existe'];
         }
-        return json_encode($ret);
+        return json_encode($ret);//transforma em um objeto json
     }
 
     /**
@@ -108,6 +108,6 @@ class ClientesApiController extends Controller
         }else{
             $ret = [$id => 'Não existe'];
         }
-        return json_encode($ret);
+        return json_encode($ret);//transforma em um objeto json
     }
 }
